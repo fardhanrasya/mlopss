@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: techno-deployment
+  labels:
+    app: techno-jakartabarat-fardhan
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: techno-jakartabarat-fardhan
+  template:
+    metadata:
+      labels:
+        app: techno-jakartabarat-fardhan
+    spec:
+      containers:
+      - name: techno
+        image: 334671914114.dkr.ecr.us-east-1.amazonaws.com/techno:latest
+        ports:
+        - containerPort: 2000  
+        env:
+        - name: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
+        - name: AWS_SESSION_TOKEN
+        - name: AWS_REGION
+        - name: ATHENA_DB
+        - name: S3_STAGING_DIR
+        - name: FLASK_SECRET_KEY
+        - name: API_GATEWAY_URL
+        - name: SNS_TOPIC_ARN
+        - name: ATHENA_SCHEMA_NAME
